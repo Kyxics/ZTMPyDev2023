@@ -1,0 +1,35 @@
+# Snake case
+No spaces, Case Sensitive, typically replaces spaces with underscores, do not overwrite keywords.
+Will start with either a lowercase or an underscore
+Eg. snake_case; _foo_bar;
+
+# Constants
+Double underscores will be used on either side of the variablbe.
+Commonly read as "do not touch" once defined
+
+# Escape characters
+Example statement:
+sentence = 'It's "kinda" sunny outside.'
+If print(sentence) is attempted, it'll error out.
+
+"It's" contains a single quote being used as the string quotations in the form of the apostrophy.
+"kinda" is going to be seen as a string as well.
+To force that to be read as part of the string, a backslash \ (escape character) is used right before the character.
+
+sentence = 'It\'s \"kinda\" sunny outside.'
+
+"\t" can be used to add a tab.
+Eg.
+sentence = '\tIt\'s \"kinda\" sunny outside.'
+print(sentence)
+
+Will yield:
+<    It's "kinda" sunny outside.>
+
+Similarly, "\n " will add a new line
+sentence = 'foo\nbar'
+print(sentence)
+
+Will yield:
+<foo
+bar>
