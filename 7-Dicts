@@ -1,0 +1,54 @@
+# Dictionaries are a collection of pairs of Keys and their associated Values.
+# Denoted by {}, values can be of any data types, and do not have to maintain this across the {}.
+# Keys, however, are strings.
+
+Example:
+
+dict1 = {'vehicle' : 'plane',
+         'type' : 3,
+         'in_flight' : False,
+         'pilot' : None,
+         'cargo' : ['item1', 'item2', 'item3']
+          }
+# Dict1 above shows all pairs in the syntax < key : value> with all keys as strings.
+# Note all their values' types are different.
+# Keys are NOT ORDERED (no indexing here), and contents, be it key or values, are accessed via their partner.
+# HOWEVER, if you convert the keys/values into a list, the order they appeared in the dict will become the order in the list.
+    # This gives rise to a pseudo-order of items in a dict (in a sense) and can be taken advantage of.
+    # This also signifies order of apperance in a given {} is important.
+
+dict1['vehicle'] -> 'plane'
+dict1['type'] -> 3
+dict1['in_flight'] -> False
+dict1['pilot'] -> None
+dict1['cargo'] -> ['item1', 'item2', 'item3']
+    By extension of list methods, we can also do:
+    dict1['cargo'][2] -> 'item3'
+    
+# We can nest dicts within lists as well.
+# Above dict1 looks like a plane of sorts - let's see if we can make a fleet with a list of 3 such planes:
+
+fleet_list = [
+        {'vehicle' : 'plane',
+         'type' : 3,
+         'in_flight' : False,
+         'pilot' : None,
+         'cargo' : ['item1', 'item2', 'item3']
+          },
+          {'vehicle' : 'plane',
+         'type' : 2,
+         'in_flight' : True,
+         'pilot' : None,
+         'cargo' : ['crate1', 'crate2', 'crate3']
+          },
+          {'vehicle' : 'plane',
+         'type' : 1,
+         'in_flight' : True,
+         'pilot' : None,
+         'cargo' : []
+          }]
+
+# We now can check it from the fleet_list []
+print(fleet_list[1]) -> <{'vehicle': 'plane', 'type': 2, 'in_flight': True, 'pilot': None, 'cargo': ['crate1', 'crate2', 'crate3']}>
+print(fleet_list[1]['cargo'] -> <['crate1', 'crate2', 'crate3']>
+print(fleet_list[1]['cargo'][2] -> <'crate3'>
