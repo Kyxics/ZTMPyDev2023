@@ -33,3 +33,37 @@ print(sentence)
 Will yield:
 <foo
 bar>
+
+# Format Strings
+Instead of pure concatenation (eg. str + str + str), there are a few methods to format a string to parse variales directly in;
+
+Example:
+name = 'TestDummy'
+age = '18'
+# We want to print "Hi TestDummy. You are 18 years old."
+
+f'{str}' usage
+print(f'Hi {name}. You are {age} years old')
+# Note the variable names are directly referenced.
+
+{}.format usage
+    print('Hi {}. You are {} years old.'.format('TestDummy','18'))
+# Though this works, if there are many variables, they can/should be referenced instead:
+    print('Hi {}. You are {} years old.'.format(name,age))
+# Note that the {} can have index inserted. When used, the index references the format(item0, item1, etc...) items.
+    print('Hi {1}. You are {0} years old.'.format(name,age)) will yield <Hi 18. You are TestDummy years old.>
+# If we want to assign different variales, we can do so by enforcing the new variales into the {}s:
+    print('Hi {new_name}. You are {new_age} years old.'.format(new_name = 'Jack', new_age' = 100)) will yield:
+        <Hi Jack. You are 100 years old.>
+
+# Indexing and slicing a string
+Syntax: string[start index: end index: stepover]
+    Must have at least 1 parameter used.
+Example: 'a string'[1] -> ' ' as indexing starts at 0, index 1 is just the space character
+Example: 'a string'[-1] -> 'g' as negative index reverses the read. Note negative indices starts at -1 and not from 0.
+Example: 'a string'[1:] -> ' string' as index starts at 1 with no end, thus run to completion
+Example: 'a string'[:3] -> 'a s' no start index given (will start at 0), and run up to but excluding index 3 (thus ends at index 2)
+Example: 'a string'[2:5] -> 'str' as this starts (and includes) index 2 and ends before index 5
+Example: 'a string'[1::2] -> ' tig' as this starts at index 1 and runs to completion, but only includes every 2nd character
+Example: 'a string'[::-1] -> 'gnirts a' as unless negative stepping is specified, slicing will always read forward.
+
