@@ -34,6 +34,18 @@ Will yield:
 <foo
 bar>
 
+# Immutability
+Important: a string's assigned value cannot be modified and can only be fully reassigned/replaced.
+Example:
+a_string = "foobar"
+a_string = 12345 # <- we're reassigning
+print(a_string) will yield <12345, type int> just fine
+
+However...Example:
+a_string = "foobar"
+a_string[0] = "hi" # <- this will fail, as we're attempting to modify the string
+a_string = "hioobbar" # <- this will work, as we're reassigning the entire variable
+
 # Format Strings
 Instead of pure concatenation (eg. str + str + str), there are a few methods to format a string to parse variales directly in;
 
