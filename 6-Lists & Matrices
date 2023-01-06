@@ -1,0 +1,147 @@
+### Lists basics
+# A container of "stuff" - i.e. a collection of items. This can be anything and a mixture of data types.
+# Including lists of lists among others.
+
+Example:
+list1 = ['apples', 5, 6, 'John Doe', 'car']
+
+# List index also starts at 0 and can be accessed/sliced the same way as a string:
+print(list1[0]) -> <'apples', type string> 'apples' is a string, so will return this as-is
+print(list1[1:4]) -> <['apples', 5, 6, 'John Doe', 'car']> as a list-type object.
+print(list1[::2]) -> <['apples',6,'car']> as a list-type object
+# Note more complex code often will reassign a slice elsewhere for further use, which maintains the original list.
+
+### Unlike a string, however, lists can have individual items modified
+
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+list1[0] = 3
+print(list1) -> <['apples', 5, 6, 'John Doe', 'car']>
+
+# insert(index, object) usage
+# Modifies in place
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+list1.insert(1,'garage')          # insert(INDEX, OBJECT) will 'insert' the OBJECT into the list's INDEX, thus shifting everything afterwards by 1 per use.
+print(list1) -> <['apples', 'garage', 5, 6, 'John Doe', 'car']>
+
+# pop() usage
+# Modifies list in place
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+list1.pop()                       # pop() will 'pop' out the last element and return the rest
+print(list1) -> <['apples', 5, 6, 'John Doe'>
+
+# remove(value) usage
+# Modifies list in place
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+list1.remove('John Doe')          # remove() will 'remove' the first occurence of the value seeked
+print(list1) -> <['apples', 5, 6, 'car']>
+# Due to the "First value found" part...
+  [1,1,1,2,3].remove(1) will remove the 1 at the original index[0], but not the others.
+  
+# clear() usage
+# Modifies list in place
+# Simply will clear out all elements in the list and return an empty list [].
+list1.clear()
+print(list1) -> <[]>
+
+# append() usage
+# Modifies in place
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+list1.append('truck')             # append() will 'add' to the end of the list whatever you put in
+print(list1) -> <['apples', 5, 6, 'John Doe', 'car', 'truck']>
+
+# extend([iterable]) usage
+# Modifies in place
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+list1.extend([100,101])           # extend(itr) will 'extend' the list using the iterable itr.
+print(list1) -> <['apples', 5, 6, 'John Doe', 'car', 100, 101]>
+    # given this uses an iterable, things like "range(5,10)" will work as well:
+    list1.extend(range(1,5))
+    print(list1) -> <['apples', 5, 6, 'John Doe', 'car', 1, 2, 3, 4]>
+    
+# index(value [,start, stop]) usage
+# Searches list and returns 1st occurence of a match
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+print(list1.index(6)) -> <2>
+print(list1.index('John Doe')) -> <3>
+# Returns the index upon finding the first occurence of the value given. Value must match both datatype and content exactly.
+# Due to "First occurence..." [1,2,3,3,3,4,5].index(3) will return <2> and not the other matches.
+
+# <value in list> expressions
+# Searches list and signifies if matches are found via True/False
+# Starting with list1 = ['apples', 5, 6, 'John Doe', 'car']
+print('apples' in list1) -> <True>      # As 'apples' was found
+print('Jane Doe' in list1) -> <False>   # As 'Jane Doe' was not matched in the list
+
+# count(value) usage
+# Searches and counts occurrences of value
+# Starting with list2 = ['apple', 'apple', 'apple', 6, 1, 'car']
+print(list2.count('apple')) -> <3>      # As 'apple' was matched 3 times
+print(list2.count(5)) -> <0>            # As 5 was not matched at all.
+
+# sort() usage
+# Sorts and orders elements of the list.
+# NOTE: Exclusive to either Strings or Numerics, not both.
+    # Starting with list3 = list3 = ['A', 'z', ' ', 'oops','OOPS', 'o@ps', 'O@PS']
+    list3.sort()
+    print(list3) -> <[' ', 'A', 'O@PS', 'OOPS', 'o@ps', 'oops', 'z']>       # Demonstrates precedences between letters, specials and spaces
+
+    # Starting with list4 = [999, -23.9, 0, 121/11]
+    list4.sort()
+    print(list4) -> <[-23.9, 0, 11.0, 999]>                                 # Demonstrates mix of int, float, and math operations
+    
+# reverse() usage
+# Reverses the elements of the list, and reindex
+# Commonly used in conjunction with Sort()
+list4 = [999, -23.9, 0, 121/11]
+list4.reverse()
+print(list4) -> <[11.0, 0, -23.9, 999]>
+print(list4[0]) -> <11.0>
+
+# list(itr) usage
+# Though you can put items in the parameters, this is most useful when you have an iterable, including strings.
+    # As an example, range(1,100) will start at 1 and end at 99, and is treated as an iterable object:
+    a = range(1,100)
+    print(a) -> range(1, 100)
+    print(type(a)) -> <class 'range'>
+    # However, if wrapped ih a list(), we'll get...:
+    list5 = list(range(1,100)
+    print(list5) -> [1,2,3,4,5............99]
+    
+    # As another example, putting a string into this will split the string into a list of characters:
+    word = 'hello world'
+    print(list(word)) -> <['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']>
+    
+# join(itr) usage
+# Joins the parent variable inbetween the elements of the itr provided
+sentence1 = ['Hello','my','name','is','JOJO']
+new_char = '!!!'
+newly_made = new_char.join(sentence1)
+print(newly_made) -> <Hello!!!my!!!name!!!is!!!JOJO>        # Effectively putting 'new_char' inbetween every element of the list used
+
+# List unpacking
+# Allows quicker unpacking of a list
+Example:
+a,b,c,*other, d = list(range(1,100))              # Will give a [] from 1 to 99 inclusive
+print(a, b, c) -> <1 2 3>
+print(other) -> <[4, 5, 6 ...... 98]>          # We have effectively created "other" to refer to the rest of the list not covered by a, b, c.
+print(a, b, c, other, d) -> <1, 2, 3, [4, 5, 6 ...... 98], 99>     # Note that if "other" is representing multiple elements, it'll come back as a list.
+
+### Matrix basics
+# A multi-dimentional array/list, commonly used as 2D lists.
+# Lists of lists are used to give additional depth to each parent list.
+
+Example:
+matrix1 = [[1,2,3],
+          [4,5,6],
+          [7,8,9]]
+          
+# Printing it is not too useful...:
+print(matrix1) -> [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+# Howver, indexing now becomes much much more useful:
+print(matrix1[1]) -> [4,5,6]        # index [1] of parent list "matrix1"
+print(matrix1[1][0]) -> 4           # index [0] of the list generated by matrix1[0]
+                                    # Effectively allowing you to treat this as a "grid" similar to (x,y) cartesian matrix, but just going top down.
+# Due to the matrix being a list of lists, each sublist and their elements having unique indices,
+# this gives rise to matrix maths (but covered by numpy), as well as vectorization (check notes much later; worth looking up).
+# NOTE: Any list operations and index methods can also be applied to matrices and their nested elements.
