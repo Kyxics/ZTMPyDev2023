@@ -1,0 +1,22 @@
+# Program to guess your age based on year of birth input.
+=============================
+### Using Datetime
+# Will fail in use case where input is not numerical
+
+from datetime import datetime as dt
+
+current_year = int(dt.now().year)
+birth_year = int(input('What year were you born?'))
+guess = current_year - birth_year
+print(f'You are approximately {guess} years old.')
+=============================
+### No imports
+# Again will fail if non numerics are used.
+
+birth_year = int(input('What year were you born? Eg. 1914: '))
+current_year = int(input('What year is it right now? Eg. 1914: '))
+guess = current_year - birth_year
+print(f'You are approximately {guess} years old.')
+=============================
+# Note covering all use/edge cases (such as full verbose years) will get more complex.
+# Regex and matching will be required.
