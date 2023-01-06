@@ -1,0 +1,12 @@
+# Password length checker exercise
+
+username = input('Please input your user name: ') # Username input
+password = input('Please input your password: ')  # Password input
+pw_length = len(password)                         # Password length
+
+# pw_length returns int, used to repeat '*' to obfuscate output, which returns a str (int * str -> str repeated (int) times)
+# then converted to str type to be used as part of the string.
+print('Welcome, {}, your password {} is {} characters long.'.format(username,
+                                                                    pw_length*'*',
+                                                                    str(pw_length)
+                                                                    ))
