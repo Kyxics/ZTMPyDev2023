@@ -1,6 +1,10 @@
 # Dictionaries are a collection of pairs of Keys and their associated Values.
 # Denoted by {}, values can be of any data types, and do not have to maintain this across the {}.
-# Keys, however, are strings.
+# Keys can also be of any DType, but typically we see these as strings as long as the key is immutable:
+# things like lists are thus forbidden while tuples will be allowed.
+
+# NOTE: if there are duplicate keys, the LAST one will be used for access, as each iteration of the key
+# overwrites the previous. Thus {key:1 , key:2} will return 2 if key is accessed.
 
 Example:
 
