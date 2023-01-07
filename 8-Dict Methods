@@ -1,0 +1,110 @@
+# Dictionary Methods
+
+# dict() Usage
+# Though not common, one can create a {} out of the dict() function.
+# dict() will attempt to create a dictionary to a variable.
+Example:
+user1 = dict('name' == 'John Doe')
+print(user1) ->  {'name' : 'John Doe'} 
+
+# get() Usage
+# If we attempt to access a key/value of a {} that does not exist, this will error out.
+# Get() will allow the code to 'check' for it first, returning anything found:
+
+Example, assuming:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+
+dict1['key3'] will error out
+dict1.get('key3') ->  None                  # which indicates "none was found"
+dict1.get('key1') ->  'value 1'             # returning the value of the matching key
+dict1.get('value 1') ->  None               # Note get() ONLY searches for keys
+
+# Keys searching
+# To verify if a key exists in a dict, one can also use the "x in <dict>" syntax.
+# X will be searched among the keys, and will return a bool True of False without error.
+# X CANNOT be an iterable such as a list as Py will attempt to match the entirety of X to a key.
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+print('key1' in dict1) ->  True             # 'key1' matched to a key in the dictionary referenced
+print('junk' in dict1) ->  False            # 'junk' did not match any keys in the dictionary referenced
+
+# keys() Usage
+# Similar in usage to above Key Searching, but specifies (added bonus of being readable) that keys are searched.
+# Can also be used standalone to generate all keys, in order of being found.
+    # NOTE: Returns a dict(keys) object, which can be further converted into a list (cannot be used as a list directly).
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+print('key1' in dict1.keys()) ->  True      # 'key1' matched to a key in the dictionary referenced
+print('junk' in dict1.keys()) ->  False     # 'junk' did not match any keys in the dictionary referenced
+print(dict1.keys()) -> <dict_keys(['key1', 'key2'])>  # Type here is 'dict_keys', containing a list of keys.
+
+# values() usage
+# Similar to keys() but applies to values instead:
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+print('key1' in dict1.values()) ->  False   # 'key1' did not match any values in the dictionary referenced
+print('value 1' in dict1.values()) ->  True # 'value 1' matched to a value in the dictionary referenced
+print(dict1.values()) -> dict_values(['value 1', '1234']) # Type here is 'dict_values', containing a list of values.
+
+# items() usage
+# Similar to previous keys() and values(), but accounts for entire items instead.
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+print('key1' in dict1.items()) ->  False    # Did not match any "item" in the dictionary referenced
+print('value 1' in dict1.items()) ->  False # Did not match any "item" in the dictionary referenced
+print(dict1.items()) -> dict_items([('key1', 'value 1'), ('key2', '1234')]) # dict_items object. Note this is in a 'list of tuples' setup.
+# Thus the below will work:
+print(('key1','value 1') in dict1.items()) ->  True 
+
+# clear() Usage
+# Similar to [].clear(), this will empty out the dictionary.
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+dict1.clear()             # Note this indicates clear() operates it in-place
+print(dict1) ->  {}       # Empty dictionary
+
+# copy() Usage
+# Copies dictionary into a new variable.
+# NOTE: There is a distinction between shallowcopy() and deepcopy(). More on this later on.
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+dict2 = dict1.copy()
+print(dict2) ->  {'key1' : 'value 1', 'key2' : '1234'} 
+
+# pop(key, default) Usage
+# Function itself will remove whatever key:value pair that corresponds to the key.
+# Default can be used to denote what to use when no matches are found.
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+popped = dict1.pop('key1')
+print(popped) ->  'value 1'                           # pop() matched, remove and assigned the key:value to a new variable
+print(dict1) ->  {key2 : '1234'}                      # Shows that the removal actually happened.
+no_match = dict1.pop('new', ['stuff1', 'stuff2'])     # pop(key,default) used here.
+                                                      # Syntax states 'if no KEY matches, use ['stuff1', 'stuff2'] as the data for the variable no_match.
+print(dict1) ->  {key2 : '1234'}                      # Shows original dictionary unchanged
+print(no_match) ->  ['stuff1', 'stuff2']              # New variable now have the default value used earlier.
+
+# popitem() Usage
+# Will pop the last item and return a tuple containing both key and value.
+### IMPORTANT: "Last Item" as of Py v3.7 onwards
+### IMPORTANT: Beware if working on prior versions as it was previously "pop a random item"
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+print(dict1) -> {'key1': 'value 1', 'key2': '1234'}
+popped = dict1.popitem()                              # Pop last item and assign to new variable.
+print(dict1) -> {'key1': 'value 1'}                   # Shows last item removed
+print(popped) -> ('key2', '1234')                     # Shows the popped item exists as a tuple. Syntax is as (key,value).
+
+# update() usage
+# When used as .update(dict), Updates the a dictionary with the one used in the parameter.
+# This will extend the dictionary if no matching key exists, thus 'updating' its value.
+Example:
+dict1 = {'key1' : 'value 1', 'key2' : '1234'}
+print(dict1) -> {'key1': 'value 1', 'key2': '1234'}
+dict1.update({'new':['stuff1','stuff2']})
+print(dict1) -> {'key1': 'value 1', 'key2': '1234', 'new': ['stuff1', 'stuff2']}
+dict1.update({'new' : 'lol'})
+print(dict1) -> {'key1': 'value 1', 'key2': '1234', 'new': 'lol'}     # Value tied to the key 'new' changed from the list prior to 'lol'
+
+
+
