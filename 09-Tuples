@@ -1,0 +1,29 @@
+# Tuples
+# Immutable and unchangeable once assigned, and functions much like a list otherwise.
+# Due to this restriction, tuples are slightly cheaper in memory cost than lists.
+# Tuples are valid data types for dictionary keys and values.
+
+Example:
+tuple1 = (5,2,'a',True)
+print(True in tuple1) -> True
+print(5 in tuple1) -> True
+print(6 in tuple1) -> False
+print(tuple1[2]) -> 'a' datatype str  # Accessors such as index and slicing work. Individual index will return the data's actual type.
+print(tuple1[:3]) -> (5, 2, 'a')      # Note it also returns a tuple
+
+Failing examples:
+tuple1[2] = 'zzz'
+tuple1.sort()
+tuple1.reverse()
+# All these will fail as each line is attempting to change the tuple in some way.
+
+# Manipulation
+# Due to index and slicing being allowed, tuples can be used to set other variables.
+Example:
+tuple1 = (5,2,'a',True)
+tuple2 = tuple1[0:1]                      # Slice from index 0 up to index 1 (but not including index 1)
+tuple3 = tuple1[0:2]                      # Slice from index 0 up to index 2 (but not including index 2)
+tuple4 = tuple1[-1:-3:-1]                 # Slice from index -1 (last) to index -3 (3rd from last), step backwards
+print(tuple2) -> (5,)                     # Note the extra ',' as without it, Py will simply read it as the int 5
+print(tuple3) -> (5,2)                    # Returned slice as new tuple
+print(tuple4) -> (True, 'a')              # Returned slice as new tuple. Note order is reversed as slicing is allowed.
