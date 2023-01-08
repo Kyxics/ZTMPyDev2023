@@ -1,0 +1,99 @@
+# Sets {item, item2, item3...}
+# Sets are collections of unordered, unique values, and are housed in {}.
+# Main difference from a dict is that there are no key:value pairs within a set.
+
+Example:
+my_set = {1,2,3,4,5,'a','b','c'}
+print(my_set) -> {1,2,3,4,5,'a','b','c'}
+my_set.add(100)
+print(my_set) -> {1,2,3,4,5,'a','b','c',100}            # Shows .add() simply extends onto the last element of the set
+
+
+# set(itr) Usage
+# Due to its definition, sets can be created out of any iterable object.
+# However, due to the uniqueness of its data, only 1 of each apperance will be taken.
+# Mostly from insertion order, but careful of unexpected behavior:
+Example:
+my_t = (1,2,2,'b','a',3,3,3,5,4,5,4,'b')
+my_s = set(my_t)
+print(my_s) -> {1, 2, 3, 'b', 5, 4, 'a'}                # Note 3 came before 'b', and 'a' came last.
+
+# clear() Usage
+# Similar to other <itr>.clear(), this will empty out the set, returning an empty set() object.
+Example:
+set_a = {1,2,3,4,5}
+set_a.clear()
+print(set_a) -> set()                                   # Empty set object
+
+# Sets, however, shine more when its methods are put to use.
+# Simply put, one can view set() objects as its mathemtical namesake, with associated operations.
+# As such, it can be helpful to undrestand sets and its methods on some of the below methods, almost like a Vann Diagram.
+
+# set1.difference(set2) Usage
+# "In set1 but not in set2"
+# This is a 'check and return' operation - thus neither sets are changed.
+Example:
+set1 = {1,2,3,'a',4}
+set2 = {'a',4,1,5}
+print(set1.difference(set2)) -> {2,3}                   # Shows unordered nature of sets
+print(set2.difference(set1)) -> {5}                     # Shows unordered nature of sets
+
+# set.discard() Usage
+# Used to remove item from a set.
+Example:
+set_a = {1,2,3,'a','b','c'}
+set_a.discard('c')
+print(set_a) -> {1,2,3,'b','a'}                         # Hashable values may have reordered 'b' and 'a'
+
+# set.union(itrs) Usage
+# "Combine sets, remove duplicate values (maintains set() definition)
+Example:
+set1 = {1,2,3,'a',4}
+set2 = {'a',4,1,5}
+set3 = {100,200,300}
+set4 = set1.union(set2)
+set5 = set1.union(set2,set3)
+print(set4) -> {1, 2, 3, 4, 5, 'a'}                     # Note duplicate value removal
+print(set5) -> {1, 2, 3, 4, 5, 100, 200, 'a', 300}      # Note can combine multiple sets as needed
+
+# set1.intersection(set2) Usage
+# "Where does set1 intersect (share values) with set2"
+# Again, a 'check and return' operation
+Example:
+set1 = {1,2,3,'a',4}
+set2 = {'a',4,1,5}
+print(set1.intersection(set2)) -> {'a',4,1}
+
+# set1.difference_update(set2) Usage
+# "Find what is shared between Set1 and Set2 and remove these values from Set1"
+# This will change set1 but not set2
+Example:
+set1 = {1,2,3,'a',4}
+set2 = {'a',4,1,5}
+set1.difference_update(set2)
+print(set1) -> {2,3}
+
+# set1.isdisjoint(set2) Usage
+# "Are set1 and set2 distinct, separate sets"
+# Will return a boolean value as this is only checks the sets
+set1 = {1,2,3,'a',4}
+set2 = {'a',4,1,5}
+set3 = {100,200,300}
+print(set1.isdisjoint(set2)) -> False                   # "The two sets overlap, thus are not disjoint"
+print(set2.isdisjoint(set3)) -> True                    # "The two sets don't overlap, thus are disjoint"
+
+# issubset() and issuperset() Usage
+# "set1 is a subset of set2 IFF (if and only if) set2 completely contains set1 elements."
+# Conversely...
+# "set1 is a superset of set2 IFF set1 completely contains set2 elements."
+# Thus if Set1 is a subset of Set2 -> Set2 will always be a superset of Set1
+# These methods allow to check for these conditions, and will return boolean values.
+Example:
+set1 = {1,2,3,'a',4}
+set2 = {'a',4,1,5,'z','y','x'}
+set3 = {'x','y',4}
+set4 = {'a'}
+print(set3.issubset(set1)) -> False                     # "Set3 is not a subset of Set1"    - i.e. Set3 cannot be completely found in Set1
+print(set3.issubset(set2)) -> True                      # "Set3 is a subset of Set2"        - i.e. Set3 can be completely found in Set2
+print(set3.issuperset(set1)) -> False                   # "Set3 is not a superset of Set1"  - i.e. Set3 does not completely contain Set1
+print(set2.issuperset(set3)) -> True                    # "Set2 is a superset of Set3"      - i.e. Set2 completely contains Set3
