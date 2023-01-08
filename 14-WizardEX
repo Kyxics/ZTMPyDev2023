@@ -1,0 +1,23 @@
+# Chapter 4.66 - Wizards
+
+is_magician = False
+is_expert = True
+
+if is_magician and is_expert:
+  print("You're a master magician!")
+elif is_magician:
+  print("At least you're getting there.")
+else:
+  print("You need magic powers.")
+  
+# Remember Py auto-handle a lot of Truthy and Falsey operations under the hood.
+# Line6: "if is_magician and is_expert" is the same as calling on the boolean operator for a check on each of them.
+# i.e. "if bool(is_magician) and bool(is_expert)"
+# i.e.2. "if is_magician == True and is_expert == True
+
+# Line8 lacks the is_expert check as the below logic is at play by the time Py has reached this line:
+# "Ok, I checked is_magician and is_expert, and one of them is False."
+# Should it execute the ELIF block, this will only be when is_magician is True, as one of them must be False due to failing the initial condition.
+# "elif is_magician and not is_expert" can be still be used for code readability, which can become important in complex projects.
+
+# Line10: by this point, Python has failed both use cases of is_magician, therefore it doesn't matter what is_expert is by this point.
