@@ -1,0 +1,42 @@
+# IF loops form one of the main conditional logics in Py.
+# Generally follows the below syntax:
+
+if <some condition; a bool evaluation>:
+    <do something>
+elif <some other condition to check next> (opt):
+    <do something>
+...elif can be added as required...
+else ('when all else fails'):
+    <do something>
+    
+# Py will verify the conditions top-down. i.e. IF is checked first and performed, and if done, will exit loop.
+# Should the IF block fail, the next ELIF (if it/they exists) are then checked/performend accordingly.
+# This will move down each ELIF block should they progressively fail their respective conditions.
+# ELSE block is optional, and will be actioned should all other previous conditions fail.
+
+Example:
+
+age = 18
+if age >= 21:
+    print("Nice, you can drink in most countries.")                                   # Will print if age is equal or greater than 21
+elif age >= 18:                                                                       # < 21 is now assumed. Created next check for > 18
+    print("Sucks to not drink if you're in the USA, huh?")                            # Will print if age is equal or greater than 18. Effecitvely 18-20 at this point.
+else:                                                                                 # 'Prior conditions failed' is now assumed.
+    print("Go back to school - drinking kills your brain cells.")                     # Will print when all above conditions fail.
+    
+# You can also have multiple conditions per block, which will need to be met to action.
+Example:
+age = 20
+country = 'Japan'
+if age >= 20 and country == 'Japan':                                                  # This will only action it's block should both conditions are met.
+    print("You're recognized as an adult in Japan")
+......
+
+# BREAK and CONTINUE can exist in the <do something> area of each block:
+
+break - will cause program to break out of the entire IF/ELIF/ELSE construct.
+        This is useful when IF statements are used within loops, as it'll cause the IF portion of the loop to be cut short.
+continue - will cause program to skip anything following "continue"
+        Again most useful in loops, this will cause the code (same block as the continue) to be skipped past this point.
+        Often used to return to the start of a loop, effectively skipping one run.
+        
