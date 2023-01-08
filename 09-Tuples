@@ -27,3 +27,11 @@ tuple4 = tuple1[-1:-3:-1]                 # Slice from index -1 (last) to index 
 print(tuple2) -> (5,)                     # Note the extra ',' as without it, Py will simply read it as the int 5
 print(tuple3) -> (5,2)                    # Returned slice as new tuple
 print(tuple4) -> (True, 'a')              # Returned slice as new tuple. Note order is reversed as slicing is allowed.
+
+# Multi assignments
+# Multiple assigments, as per [] methods, work the same way.
+Example:
+a,b,c,*other = (1,2,3,4,5)
+print(a) -> 1
+print(b,c) -> 2 3
+print(other) -> (4,5)
