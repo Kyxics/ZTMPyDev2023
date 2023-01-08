@@ -1,0 +1,17 @@
+# When something is evaluated as a boolean TRUE, this 'something' is described as truthy.
+# Conversely, if it returns a boolean FALSE, this is described as falsey.
+# This is commonly accepted as Py handles a lot of True/False evaluation in the backend, and also adds some conveniences.
+
+Example:
+age = 18
+country = 'USA'
+
+if bool(age) and bool(country):
+    print("You can drive but not drink.")
+    
+# This works not because us humans recognize the driving age of USA, but merely because:
+#   bool(age) -> "does the variable 'age' have any value?"
+#   bool(country) -> "does the variable 'country' have any value?"
+# In both cases, it does not matter what is there so long as the value is not None - i.e. anything will do.
+
+# This is noted as there are uses cases where one simply wants to ensure something is present, regardless of what it is.
